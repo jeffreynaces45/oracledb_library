@@ -34,9 +34,9 @@ def find_update(result, lista, FILE_NAME):
             f.close()
             data_sql.append((str(i.givenName), str(i.uid), str(i.CodFiscale), str(i.sn), str(i.cn), str(i.mail), str(i.employeeNumber), str(i.shadowFlag), str(i.shadowLastChange)))
             data_singolo=[str(i.givenName), str(i.uid), str(i.CodFiscale), str(i.sn), str(i.cn), str(i.mail), str(i.employeeNumber), str(i.shadowFlag), str(i.shadowLastChange)]
-    if len(data_sql) == 1:
+    #if len(data_sql) == 1:
     #    print("adesso eseguo query singola")
-        data_sql=data_singolo
+    #    data_sql=data_singolo
     #print(data_sql)
     return data_sql
 
