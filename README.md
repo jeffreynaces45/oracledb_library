@@ -40,21 +40,21 @@ in windows è necessario che imposti la variabile d'ambiente e la richiami nel c
 oracledb.init_oracle_client(lib_dir=r"C:\instantclient_21_10") 
 ```  
 ## Configurazione
-## Read_file
+### Read_file
 leggo il contenuto del file csv che abbiamo preventivamente creato con tutti gli account che abbiamo importato all'interno del database Oracle.
 Questi account sono tutti gli account già caricato sulla tabella, con questo script andremo ad aggiungere nuovi entry_ldap sulla tabella tenendo aggiornata la lista.
-## Ldap_connessione
+### Ldap_connessione
 Mi collego al server ldap e filtro per tutti gli object_class='person' per mailboxtipo=s o mailboxtipo=g, estrapolo tutti gli attributi e salvo il contenuto di tutte queste entry.
-## Find_update
+### Find_update
 In questa funzione passo i risultati della ricerca di ldap e la lista del file csv, con questo possiamo:
 - per ogni entry nella ricerca_ldap estrapolo i dati
 - se l'uid della ricerca_ldap  è presente nel file_csv allora
   -  l'entry è gia presente nella tabella di Oracle
   - altrimenti inserisco la entry di ldap all'interno del file csv, inoltre salvo il contenuto della entry nelle variabili data_sql e data_singolo.
-## Oracle_connection
+### Oracle_connection
 in questa funzione estrapolo le entry_ldap nuove che abbiamo estrapolato con la funzione precente, ci collegghiamo sulla tabella oracle passando le credenziali da admin.
 - se la lunghezza dei dati è diverso da 1 e diverso da 9 carichiamo i dati usando lo statement executemany
 - altrimenti se la lunghezza dei dati == 9 allora carichiamo il dato (1 singolo account da aggiungere) tramite lo statement execute.
-## Remove_blank
+### Remove_blank
 questa funzione semplicemente va a eliminare le righe vuote all'interno del file csv.
 
