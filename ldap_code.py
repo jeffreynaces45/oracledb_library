@@ -46,7 +46,7 @@ def oracle_connessione(data):
     oracledb.init_oracle_client()          #necessario per la libreria oracledb
     BATCH_SIZE = 10000
     connection = oracledb.connect(user='MIDPOINT',                          #puntamenti al server oracle
-                 password='Ramanugi63', dsn='ldap-dns/SERVICE_NAME')
+                 password='pswd', dsn='ldap-dns/SERVICE_NAME')
     with connection.cursor() as cursor:
         cursor.setinputsizes(None, 25)
         cursor = connection.cursor()
@@ -77,7 +77,7 @@ def oracle_connessione(data):
 
 #LDAP_CONNECTION - connection ldap e retrieve attributes
 def ldap_connessione(): #Stringa di connessione
-    server = Server('ldap-balanced.unisa.it', use_ssl=False, get_info=ALL)
+    server = Server('ldap-server', use_ssl=False, get_info=ALL)
     conn = Connection(server, 'ldap_dn_administrator', 'password_ldap', auto_bind=True)
     #cerchiamo gli account per mailboxTipo e ci prendiamo tutti gli attributi necessari ecc... (&(objectclass=person)(|(codFiscale=XXX)(codFiscale=ZZZ)))
     conn.search('dn_ldap', '(&(objectclass=person)(|(mailboxtipo=s)(mailboxtipo=g)))', attributes=['givenName', 'uid', 'CodFiscale', 'sn', 'cn', 'mail', 'employeeNumber', 'shadowLastChange', 'shadowFlag'])
